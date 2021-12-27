@@ -57,5 +57,44 @@
       tags:
         Name: PubSub3
     register: pubsub3
+
+  - name: Create private subnet 1 in zone 1
+    ec2_vpc_subnet:
+      state: present
+      vpc_id: "{{vpcout.vpc.id}}"
+      cidr: "{{PvtSub1Cidr}}"
+      region: "{{region}}"
+      az: "{{zone1}}"
+      state: "{{state}}"
+      map_public: yes
+      tags:
+        Name: PvtSub1
+    register: pvtsub1
+
+  - name: Create private subnet 2 in zone 2
+    ec2_vpc_subnet:
+      state: present
+      vpc_id: "{{vpcout.vpc.id}}"
+      cidr: "{{PvtSub2Cidr}}"
+      region: "{{region}}"
+      az: "{{zone2}}"
+      state: "{{state}}"
+      map_public: yes
+      tags:
+        Name: PvtSub2
+    register: pvtsub2
+
+  - name: Create private subnet 3 in zone 3
+    ec2_vpc_subnet:
+      state: present
+      vpc_id: "{{vpcout.vpc.id}}"
+      cidr: "{{PvtSub3Cidr}}"
+      region: "{{region}}"
+      az: "{{zone3}}"
+      state: "{{state}}"
+      map_public: yes
+      tags:
+        Name: PvtSub3
+    register: pvtsub3
     
       
