@@ -96,5 +96,29 @@
       tags:
         Name: PvtSub3
     register: pvtsub3
+
+  - name: Create Internet Gateway for the public subnets
+    ec2_vpc_igw:
+      vpc_id: "{{vpcout.vpc.id}}"
+      region: "{{region}}"
+      state: "{{state}}"
+      tags:
+        Name: vprofile_IGW
+    register: igw_out
+
+  - name: setup route table for public subnets to the IGW
+    ec2_vpc_route_table:
+      vpc_id: "{{vpcout.vpc.id}}"
+      region: "{{region}}"
+      subnets:
+        - "{{pubsub1.subnet.id}}"
+        - "{{pubsub2.subnet.id}}"
+        - "{{pubsub3.subnet.id}}"
+      routes:
+        - dest: 0.0.0.0/0
+          gateway_id: "{{igw_out.gateway_id}}"
+      tags:
+        Name: vpro_RT_pubsub
+    register: pub_RT_out
     
       
