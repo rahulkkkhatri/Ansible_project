@@ -19,6 +19,16 @@
       dns_support: yes
     register: vpcout
 
-  - debug:
-      var: vpcout
+  - name: Create public subnet 1 in zone 1
+    ec2_vpc_subnet:
+      state: present
+      vpc_id: "{{vpcout.vpc.id}}"
+      cidr: "{{PubSub1Cidr}}"
+      az: "{{zone1}}"
+      state: "{{state}}"
+      map_public: yes
+      tags:
+        Name: PubSub1
+    register: pubsub1
+    
       
