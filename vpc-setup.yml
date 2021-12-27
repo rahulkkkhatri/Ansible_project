@@ -31,5 +31,31 @@
       tags:
         Name: PubSub1
     register: pubsub1
+
+  - name: Create public subnet 2 in zone 2
+    ec2_vpc_subnet:
+      state: present
+      vpc_id: "{{vpcout.vpc.id}}"
+      cidr: "{{PubSub2Cidr}}"
+      region: "{{region}}"
+      az: "{{zone2}}"
+      state: "{{state}}"
+      map_public: yes
+      tags:
+        Name: PubSub2
+    register: pubsub2
+
+  - name: Create public subnet 3 in zone 3
+    ec2_vpc_subnet:
+      state: present
+      vpc_id: "{{vpcout.vpc.id}}"
+      cidr: "{{PubSub3Cidr}}"
+      region: "{{region}}"
+      az: "{{zone3}}"
+      state: "{{state}}"
+      map_public: yes
+      tags:
+        Name: PubSub3
+    register: pubsub3
     
       
