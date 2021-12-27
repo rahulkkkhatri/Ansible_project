@@ -24,6 +24,7 @@
       state: present
       vpc_id: "{{vpcout.vpc.id}}"
       cidr: "{{PubSub1Cidr}}"
+      region: "{{region}}"
       az: "{{zone1}}"
       state: "{{state}}"
       map_public: yes
