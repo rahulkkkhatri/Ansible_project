@@ -21,3 +21,37 @@
       dest: "./bastion_key.pem"
       mode: 0600
     when: key_out.changed == True
+
+  - name: Create Sec Grp for the bastion host
+    ec2_group:
+      name: Bastion_SG
+      description: Allow port 22 from my ip
+      vpc_id: "{{vpcid}}"
+      region: "{{region}}"
+      rules:
+        - proto: tcp
+          from_port: 22
+          to_port: 22
+          cidr_ip: "{{MYIP}}"
+    register: bastion_sg_out
+
+  - name: setup bastion host
+    ec2:
+      key_name: vprofile-key_pair
+      region: "{{region}}"
+      instance_type: t2.micro
+      image: "{{bastion_ami}}"
+      wait: yes
+      wait_timeout: 300
+      group: "{{bastion_sg_out.group_id}}"
+      vpc_subnet_id: "{{pubsub1id}}"
+      instance_tags:
+        Project: Vprofile
+        Type: Bastion_host
+        Owner: DevOps_Team
+      exact_count: 1
+      count_tag:
+        Project: Vprofile
+        Type: Bastion_host
+        Owner: DevOps_Team
+    register: bastion_host_out
