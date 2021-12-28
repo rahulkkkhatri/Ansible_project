@@ -144,5 +144,22 @@
       tags:
         Name: vpro_RT_pvtsub 
     register: pvt_RT_out
+
+
+  - debug:
+      var: "{{item}}"
+    loop:
+    - "{{vpcout.vpc.id}}"
+    - "{{pubsub1.subnet.id}}"
+    - "{{pubsub2.subnet.id}}"
+    - "{{pubsub3.subnet.id}}"
+    - "{{pvtsub1.subnet.id}}"
+    - "{{pvtsub2.subnet.id}}"
+    - "{{pvtsub3.subnet.id}}"
+    - "{{igw_out.gateway_id}}"
+    - "{{pub_RT_out.route_table.id}}"
+    - "{{natgw_out.nat_gateway_id}}"
+    - "{{pvt_RT_out.route_table.id}}"
+
     
       
