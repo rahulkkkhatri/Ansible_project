@@ -177,7 +177,7 @@
 
   - name: COPY IDs to the file
     copy:
-      content: "vpcid: {{vpcout.vpc.id}}\npubsub1id: {{pubsub1.subnet.id}}\npubsub2id: {{pubsub2.subnet.id}}\npubsub3id: {{pubsub3.subnet.id}}\npvtsub1id: {{pvtsub1.subnet.id}}\npvtsub2id: {{pvtsub2.subnet.id}}\npvtsub3id: {{pvtsub3.subnet.id}}\nigwid: {{igw_out.gateway_id}}\npubRTid: {{pub_RT_out.route_table.id}}\nnatgwid: {{natgw_out.nat_gateway_id}}\npvtRTid: {{pvt_RT_out.route_table.id}"
+      content: "vpcid: {{ vpcout.vpc.id }}\npubsub1id: {{pubsub1.subnet.id}}\npubsub2id: {{pubsub2.subnet.id}}\npubsub3id: {{pubsub3.subnet.id}}\npvtsub1id: {{pvtsub1.subnet.id}}\npvtsub2id: {{pvtsub2.subnet.id}}\npvtsub3id: {{pvtsub3.subnet.id}}\nigwid: {{igw_out.gateway_id}}\npubRTid: {{pub_RT_out.route_table.id}}\nnatgwid: {{natgw_out.nat_gateway_id}}\npvtRTid: {{pvt_RT_out.route_table.id}}"
       dest: ./vars/vpc_out_vars
 
 
