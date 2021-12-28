@@ -1,0 +1,23 @@
+- name: setup bastion host in the public subnets for the admin tasks in the private subnets
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+  - name: import bastion variables
+    include_vars: vars/bastion_setup
+
+  - name: import VPC IDs
+    include_vars: vars/vpc_out_vars
+
+  - name: create vprofile ec2 keypair
+    ec2_key:
+      name: vprofile-key_pair
+      region: "{{region}}"
+    register: key_out
+
+  - name: Save private key into the ansinle server
+    copy:
+      content: "{{key_out.key.private_key}}"
+      dest: "./bastion_key.pem"
+      mode: 0600
+    when: key_out.changed == True
