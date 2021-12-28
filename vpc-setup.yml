@@ -161,5 +161,20 @@
     - natgw_out.nat_gateway_id
     - pvt_RT_out.route_table.id
 
+  - set_fact:
+     vpcid: "{{vpcout.vpc.id}}"
+     pubsub1id: "{{pubsub1.subnet.id}}"
+     pubsub2id: "{{pubsub2.subnet.id}}"
+     pubsub3id: "{{pubsub3.subnet.id}}"
+     pvtsub1id: "{{pvtsub1.subnet.id}}"
+     pvtsub2id: "{{pvtsub2.subnet.id}}"
+     pvtsub3id: "{{pvtsub3.subnet.id}}"
+     igwid: "{{igw_out.gateway_id}}"
+     pubRTid: "{{pub_RT_out.route_table.id}}"
+     natgwid: "{{natgw_out.nat_gateway_id}}"
+     pvtRTid: "{{pvt_RT_out.route_table.id}}"
+     cacheable: yes
+
+
     
       
