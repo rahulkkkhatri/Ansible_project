@@ -43,7 +43,7 @@
       image: "{{bastion_ami}}"
       wait: yes
       wait_timeout: 300
-      group: "{{bastion_sg_out.group_id}}"
+      group_id: "{{bastion_sg_out.group_id}}"
       vpc_subnet_id: "{{pubsub1id}}"
       instance_tags:
         Project: Vprofile
