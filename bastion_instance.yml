@@ -47,11 +47,11 @@
       vpc_subnet_id: "{{pubsub1id}}"
       instance_tags:
         Project: Vprofile
-        Type: Bastion_host
+        Name: Bastion_host
         Owner: DevOps_Team
       exact_count: 1
       count_tag:
         Project: Vprofile
-        Type: Bastion_host
+        Name: Bastion_host
         Owner: DevOps_Team
     register: bastion_host_out
