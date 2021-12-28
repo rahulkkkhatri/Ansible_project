@@ -120,5 +120,29 @@
       tags:
         Name: vpro_RT_pubsub
     register: pub_RT_out
+
+  - name: Create NAT GW for the private subnet and Allocate EIP
+    ec2_vpc_nat_gateway:
+      state: "{{state}}"
+      subnet_id: "{{pubsub1.subnet.id}}"
+      wait: yes
+      region: "{{region}}"
+      if_exist_do_not_create: yes
+    register: natgw_out
+
+  - name: setup route table for private subnet to the NAT GW
+    ec2_vpc_route_table:
+      vpc_id: "{{vpcout.vpc.id}}"
+      region: "{{region}}"
+      subnets:
+        - "{{pvtsub1.subnet.id}}"
+        - "{{pvtsub2.subnet.id}}"
+        - "{{pvtsub3.subnet.id}}"
+      routes:
+        - dest: 0.0.0.0/0
+          gateway_id: "{{natgw_out.nat_gateway_id}}"
+      tags:
+        Name: vpro_RT_pvtsub 
+    register: pvt_RT_out
     
       
